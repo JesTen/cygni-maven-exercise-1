@@ -14,6 +14,9 @@
     </properties>
 
     <developers>
+        <developer>
+            <name>Jessica Tennfors</name>
+        </developer>
     </developers>
 
     <dependencies>
@@ -22,8 +25,62 @@
             <artifactId>junit</artifactId>
             <version>4.11</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.12</version>
+        </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <executions>
+                  <execution>
+                    <goals>
+                      <goal>exec</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                  <executable>maven</executable>
+                </configuration>
+              </plugin>
+              <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                    <manifest>
+                      <mainClass>se.cygni.training.maven.App</mainClass>
+                    </manifest>
+                  </archive>
+                </configuration>
+                <executions>
+                  <execution>
+                    <id>create-archive</id>
+                    <phase>package</phase>
+                    <goals>
+                      <goal>single</goal>
+                    </goals>
+                  </execution>
+                </executions>
+              </plugin>
+        </plugins>
+    </build>
 </project>
 
 
